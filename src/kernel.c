@@ -1,5 +1,6 @@
+#include "utils.h"
+
 void kernel_main() {
-    while(1){
-        
-    }
+    print(0, "Hello world\0", 0x07);
+    while(1);
 }
