@@ -9,8 +9,10 @@ build_image: build
 	# Image is in /bin/build/image.iso
 
 build: make_build_dir build_kernel build_boot build_utils
-	ld -m elf_i386 -T src/linker.ld -o bin/build/kernel.elf bin/boot.o bin/kernel.o bin/video.o
+	ld -m elf_i386 -T src/linker.ld -o bin/build/kernel.elf bin/boot.o bin/kernel.o bin/video.o bin/math.o
 
+clear: 
+	rm -rf bin/*
 make_build_dir:
 	mkdir bin/build/image -p
 	mkdir bin/build/image/boot -p
@@ -18,6 +20,7 @@ make_build_dir:
 
 build_utils:
 	$(CC) $(CFLAGS) -c src/utils/video.c -o bin/video.o
+	$(CC) $(CFLAGS) -c src/utils/math.c -o bin/math.o
 
 build_kernel:
 	$(CC) $(CFLAGS) -c src/kernel.c -o bin/kernel.o
