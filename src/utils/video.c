@@ -7,6 +7,8 @@ void put(int pos, char symbol, char col) {
 
 void print(int pos, char* text, char col) {
     for (int i=0; text[i]!='\0';i++) {
-        put((pos+i)*2, text[i], col);
+        if (text[i]=='\n') pos=(pos/80+1)*80;
+        // else if (text[i]=='\r') pos=pos/80;
+        else put((pos+i)*2, text[i], col);
     }
 }
