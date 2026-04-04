@@ -1,5 +1,4 @@
-extern int round(double n);
-
+#include "utils.h"
 volatile char* video = (volatile char*)0xB8000;
 
 void put(int pos, char symbol, char col) {
