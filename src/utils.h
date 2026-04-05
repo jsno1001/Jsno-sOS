@@ -1,5 +1,6 @@
 // video.c
 extern volatile char* video;
+extern int vcursor;
 extern void print(int pos, char* text, char col);
 extern void put(int pos, char symbol, char col);
 // math.c

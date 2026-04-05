@@ -1,5 +1,6 @@
 #include "utils.h"
 volatile char* video = (volatile char*)0xB8000;
+int vcursor;
 
 int put(int pos, char symbol, char col) {
     video[pos] = symbol;
@@ -16,10 +17,10 @@ int print(int pos, char* text, char col) {
         if (text[i]=='\r'){
             pos=(pos/80)*80;
         } else {
-            put((pos)*2, text[i], col);
-            pos++;
+            pos+=put((pos)*2, text[i], col);
         }
     }
 
+    cursor = pos;
     return pos;
 }
