@@ -1,12 +1,14 @@
 #include "utils.h"
 volatile char* video = (volatile char*)0xB8000;
 
-void put(int pos, char symbol, char col) {
+int put(int pos, char symbol, char col) {
     video[pos] = symbol;
-    video[pos+1] = col;
+    pos++;
+    video[pos] = col;
+    return pos;
 }
 
-void print(int pos, char* text, char col) {
+int print(int pos, char* text, char col) {
     for (int i=0; text[i]!='\0';i++) {
         if (text[i]=='\n') {
             pos=(pos/80+1)*80;
@@ -18,4 +20,6 @@ void print(int pos, char* text, char col) {
             pos++;
         }
     }
+
+    return pos;
 }

@@ -1,3 +1,6 @@
+#include "utils.h"
+
+
 typedef struct multiboot_info_t {
     unsigned int flags;
     unsigned int mem_lower;
@@ -11,10 +14,15 @@ typedef struct multiboot_info_t {
 } multiboot_info_t;
 
 typedef struct multiboot_memory_map {
-    unsigned long size;
-    unsigned long long addr;
-    unsigned long long len;
-    unsigned long type;
-} mmap_entry_t;
+    uint32_t size;
+    uint64_t addr;
+    uint64_t len;
+    uint32_t type;
+} __attribute__((packed)) multiboot_memory_map_t;
 
-multiboot_info_t* mbi;
+uint64_t init_memory(multiboot_info_t* mbi) {
+    if (!(mbi->flags & (1 << 6))) return 0;
+
+    
+    
+}
